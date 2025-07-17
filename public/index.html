@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mr. Speedy Development</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --primary-orange: #ff6b00;
+      --secondary-orange: #ff8533;
+      --accent-yellow: #ffc107;
+      --dark-bg: #0a0a0a;
+      --card-bg: rgba(20, 20, 20, 0.8);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .space-grotesk {
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.4;
+    }
+
+    /* Enhanced Background Animation */
+    .bg-animated {
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #0f0f0f, #2a2a2a);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
+      position: relative;
+    }
+
+    .bg-animated::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 80%, rgba(255, 107, 0, 0.05) 0%, transparent 50%);
+      animation: backgroundPulse 20s ease-in-out infinite;
+    }
+
+    @keyframes gradientFlow {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes backgroundPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    /* Enhanced Glow Effects */
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 20px var(--primary-orange), 0 0 40px rgba(255, 107, 0, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 30px var(--primary-orange), 0 0 80px rgba(255, 107, 0, 0.5);
+      }
+    }
+
+    .glow {
+      animation: pulseGlow 3s infinite;
+    }
+
+    .enhanced-glow {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .enhanced-glow::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 107, 0, 0.3), transparent);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      50%, 100% { left: 100%; }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--primary-orange), var(--accent-yellow));
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, var(--secondary-orange), var(--primary-orange));
+    }
+
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Enhanced Hover Effects */
+    .hover-glow {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .hover-glow:hover {
+      background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(255, 193, 7, 0.1));
+      color: var(--primary-orange);
+      box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Game Card Enhancements */
+    .game-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 107, 0, 0.2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 107, 0, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .game-card:hover::before {
+      opacity: 1;
+    }
+
+    .game-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(255, 107, 0, 0.3);
+      border-color: var(--primary-orange);
+    }
+
+    .game-img {
+      transition: all 0.4s ease;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
+    }
+
+    /* Text Animations */
+    .text-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Stats Counter Animation */
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(45deg, var(--primary-orange), var(--accent-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    /* Enhanced Button Styles */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-orange), var(--accent-yellow));
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255, 107, 0, 0.4);
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 60;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu a:hover {
+      background: rgba(255, 107, 0, 0.2);
+      color: var(--primary-orange);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .text-6xl { font-size: 3rem; }
+      .text-5xl { font-size: 2.5rem; }
+      .text-4xl { font-size: 2rem; }
+      .text-7xl { font-size: 3.5rem; }
+      
+      .game-card {
+        padding: 1rem;
+      }
+      
+      .stat-number {
+        font-size: 2rem;
+      }
+    }
+
+    /* Footer fixes */
+    .footer-grid {
+      min-height: auto;
+    }
+
+    .footer-content {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    /* Text rendering fix */
+    .text-fix {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+  </style>
+</head>
+<body class="bg-animated text-white min-h-screen flex flex-col text-fix">
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" onclick="closeMobileMenu()"><i class="fas fa-home mr-2"></i>Home</a>
+    <a href="#about" onclick="closeMobileMenu()"><i class="fas fa-info-circle mr-2"></i>About</a>
+    <a href="#games" onclick="closeMobileMenu()"><i class="fas fa-gamepad mr-2"></i>Games</a>
+    <a href="#stats" onclick="closeMobileMenu()"><i class="fas fa-chart-bar mr-2"></i>Stats</a>
+    <button onclick="closeMobileMenu()" class="absolute top-8 right-8 text-3xl text-orange-400"><i class="fas fa-times"></i></button>
+  </div>
+
+  <!-- HEADER -->
+  <header class="w-full fixed top-0 z-50 flex justify-center px-4 py-4">
+    <div class="w-full max-w-7xl bg-black/60 backdrop-blur-lg border border-orange-500/30 rounded-2xl shadow-2xl flex items-center justify-between px-8 py-5">
+      <h1 class="text-3xl font-bold text-orange-400 tracking-wide space-grotesk">
+        <i class=""></i>Mr. Speedy Development
+      </h1>
+      <nav class="hidden md:flex space-x-2">
+        <a href="#home" class="text-sm font-medium text-gray-100 px-6 py-3 rounded-full hover-glow"><i class="fas fa-home mr-2"></i>Home</a>
+        <a href="#about" class="text-sm font-medium text-gray-100 px-6 py-3 rounded-full hover-glow"><i class="fas fa-info-circle mr-2"></i>About</a>
+        <a href="#games" class="text-sm font-medium text-gray-100 px-6 py-3 rounded-full hover-glow"><i class="fas fa-gamepad mr-2"></i>Games</a>
+        <a href="#stats" class="text-sm font-medium text-gray-100 px-6 py-3 rounded-full hover-glow"><i class="fas fa-chart-bar mr-2"></i>Stats</a>
+      </nav>
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-orange-400 text-2xl" onclick="openMobileMenu()"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="flex-grow flex items-center justify-center text-center px-6 pt-32 pb-20 relative">
+    <div class="max-w-4xl text-reveal">
+      <div class="mb-6">
+        <span class="inline-block px-4 py-2 bg-orange-500/20 border border-orange-500/40 rounded-full text-orange-300 text-sm font-medium mb-6">
+          <i class="fas fa-crown mr-2"></i>Premium Roblox Development
+        </span>
+      </div>
+      <h2 class="text-5xl md:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-orange-400 via-yellow-500 to-orange-600 drop-shadow-2xl mb-6 space-grotesk">
+        Welcome to the Future of Gaming
+      </h2>
+      <p class="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+        We craft extraordinary Roblox experiences that push the boundaries of creativity, innovation, and pure fun. Join thousands of players in our immersive worlds.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="https://www.roblox.com/groups/" target="_blank">
+          <button class="btn-primary px-8 py-4 text-white font-semibold rounded-full glow shadow-lg transition duration-300 enhanced-glow">
+            <i class="fas fa-rocket mr-2"></i>Join Our Universe
+          </button>
+        </a>
+        <a href="#games">
+          <button class="px-8 py-4 border-2 border-orange-500/50 text-orange-400 font-semibold rounded-full hover:bg-orange-500/10 transition duration-300">
+            <i class="fas fa-gamepad mr-2"></i>Explore Games
+          </button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section id="stats" class="py-16 px-6 bg-black/50 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="game-card rounded-2xl p-6">
+          <div class="text-orange-400 text-3xl mb-2"><i class="fas fa-users"></i></div>
+          <div class="stat-number space-grotesk">50K+</div>
+          <p class="text-gray-300 text-sm font-medium">Active Players</p>
+        </div>
+        <div class="game-card rounded-2xl p-6">
+          <div class="text-orange-400 text-3xl mb-2"><i class="fas fa-gamepad"></i></div>
+          <div class="stat-number space-grotesk">15+</div>
+          <p class="text-gray-300 text-sm font-medium">Games Created</p>
+        </div>
+        <div class="game-card rounded-2xl p-6">
+          <div class="text-orange-400 text-3xl mb-2"><i class="fas fa-eye"></i></div>
+          <div class="stat-number space-grotesk">1M+</div>
+          <p class="text-gray-300 text-sm font-medium">Total Visits</p>
+        </div>
+        <div class="game-card rounded-2xl p-6">
+          <div class="text-orange-400 text-3xl mb-2"><i class="fas fa-clock"></i></div>
+          <div class="stat-number space-grotesk">24/7</div>
+          <p class="text-gray-300 text-sm font-medium">Support</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="py-24 px-6 bg-black/40 backdrop-blur-md">
+    <div class="max-w-5xl mx-auto text-center">
+      <h3 class="text-4xl md:text-5xl font-bold text-orange-300 mb-6 space-grotesk">About Mr. Speedy Development</h3>
+      <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-yellow-500 mx-auto mb-8"></div>
+      <p class="text-gray-200 text-lg md:text-xl leading-relaxed max-w-4xl mx-auto">
+        Mr. Speedy Development isn't just another game studio – we're pioneers in the Roblox ecosystem, dedicated to creating powerful, immersive, and innovative experiences that captivate players worldwide.
+      </p>
+      <div class="grid md:grid-cols-3 gap-8 mt-16">
+        <div class="game-card rounded-2xl p-8 text-center">
+          <div class="text-4xl mb-4 text-orange-400"><i class="fas fa-bolt"></i></div>
+          <h4 class="text-xl font-semibold text-orange-300 mb-3 space-grotesk">Lightning Fast</h4>
+          <p class="text-gray-300">Rapid development cycles ensuring fresh content and updates</p>
+        </div>
+        <div class="game-card rounded-2xl p-8 text-center">
+          <div class="text-4xl mb-4 text-orange-400"><i class="fas fa-palette"></i></div>
+          <h4 class="text-xl font-semibold text-orange-300 mb-3 space-grotesk">Creative Excellence</h4>
+          <p class="text-gray-300">Pushing creative boundaries with every project we undertake</p>
+        </div>
+        <div class="game-card rounded-2xl p-8 text-center">
+          <div class="text-4xl mb-4 text-orange-400"><i class="fas fa-gem"></i></div>
+          <h4 class="text-xl font-semibold text-orange-300 mb-3 space-grotesk">Premium Quality</h4>
+          <p class="text-gray-300">High-quality experiences that exceed player expectations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED GAMES SECTION -->
+  <section id="games" class="py-24 px-6 bg-black/30 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h3 class="text-4xl md:text-5xl font-bold text-orange-300 mb-6 space-grotesk">Featured Games</h3>
+        <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-yellow-500 mx-auto mb-6"></div>
+        <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+          Dive into our collection of premium games, each crafted with passion and precision
+        </p>
+      </div>
+      
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        
+        <!-- GAME CARD 1 -->
+        <div class="game-card rounded-2xl p-6 flex flex-col">
+          <div class="relative mb-6">
+            <img src="https://via.placeholder.com/400x240/ff6b00/ffffff?text=SPEED+TYCOON" alt="Speed Tycoon" class="game-img w-full h-48 object-cover rounded-xl" />
+            <div class="absolute top-3 right-3 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+              <i class="fas fa-fire mr-1"></i>HOT
+            </div>
+          </div>
+          <h4 class="text-2xl font-semibold text-white mb-3 space-grotesk">Speed Tycoon</h4>
+          <p class="text-gray-300 text-sm mb-4 flex-grow">
+            Build your empire at lightning speed! The ultimate tycoon experience with cutting-edge mechanics.
+          </p>
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-orange-400 font-semibold"><i class="fas fa-star mr-1"></i>4.9/5</span>
+            <span class="text-green-400 font-semibold"><i class="fas fa-gamepad mr-1"></i>12.5K playing</span>
+          </div>
+          <a href="https://www.roblox.com/games/" target="_blank" class="w-full">
+            <button class="w-full btn-primary px-6 py-3 text-white font-semibold rounded-full glow shadow-md transition duration-300">
+              <i class="fas fa-play mr-2"></i>Play Now
+            </button>
+          </a>
+        </div>
+
+        <!-- GAME CARD 2 -->
+        <div class="game-card rounded-2xl p-6 flex flex-col">
+          <div class="relative mb-6">
+            <img src="https://via.placeholder.com/400x240/ffc107/000000?text=SPEED+WARS" alt="Speed Wars" class="game-img w-full h-48 object-cover rounded-xl" />
+            <div class="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+              <i class="fas fa-plus mr-1"></i>NEW
+            </div>
+          </div>
+          <h4 class="text-2xl font-semibold text-white mb-3 space-grotesk">Speed Wars</h4>
+          <p class="text-gray-300 text-sm mb-4 flex-grow">
+            Epic PvP battles with next-gen combat systems. Fast-paced action meets strategic gameplay.
+          </p>
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-orange-400 font-semibold"><i class="fas fa-star mr-1"></i>4.8/5</span>
+            <span class="text-green-400 font-semibold"><i class="fas fa-gamepad mr-1"></i>8.3K playing</span>
+          </div>
+          <a href="https://www.roblox.com/games/" target="_blank" class="w-full">
+            <button class="w-full btn-primary px-6 py-3 text-white font-semibold rounded-full glow shadow-md transition duration-300">
+              <i class="fas fa-sword mr-2"></i>Battle Now
+            </button>
+          </a>
+        </div>
+
+        <!-- GAME CARD 3 -->
+        <div class="game-card rounded-2xl p-6 flex flex-col">
+          <div class="relative mb-6">
+            <img src="https://via.placeholder.com/400x240/ff8533/ffffff?text=OBBY+CHALLENGE" alt="Obby Challenge" class="game-img w-full h-48 object-cover rounded-xl" />
+            <div class="absolute top-3 right-3 bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+              <i class="fas fa-star mr-1"></i>FEATURED
+            </div>
+          </div>
+          <h4 class="text-2xl font-semibold text-white mb-3 space-grotesk">Obby Challenge</h4>
+          <p class="text-gray-300 text-sm mb-4 flex-grow">
+            Mind-bending obstacle courses that test your skills. Progressive difficulty with epic rewards.
+          </p>
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-orange-400 font-semibold"><i class="fas fa-star mr-1"></i>4.7/5</span>
+            <span class="text-green-400 font-semibold"><i class="fas fa-gamepad mr-1"></i>15.2K playing</span>
+          </div>
+          <a href="https://www.roblox.com/games/" target="_blank" class="w-full">
+            <button class="w-full btn-primary px-6 py-3 text-white font-semibold rounded-full glow shadow-md transition duration-300">
+              <i class="fas fa-trophy mr-2"></i>Start Challenge
+            </button>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CALL TO ACTION -->
+  <section class="py-24 px-6 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 backdrop-blur-md border-t border-orange-500/30">
+    <div class="max-w-4xl mx-auto text-center">
+      <h3 class="text-4xl md:text-5xl font-bold text-white mb-6 space-grotesk">Ready to Join the Adventure?</h3>
+      <p class="text-gray-200 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+        Become part of our growing community and experience the future of Roblox gaming today.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="https://www.roblox.com/groups/" target="_blank">
+          <button class="btn-primary px-10 py-4 text-white font-semibold rounded-full glow shadow-lg transition duration-300 enhanced-glow">
+            <i class="fas fa-users mr-2"></i>Join Group Now
+          </button>
+        </a>
+        <a href="https://discord.com/" target="_blank">
+          <button class="px-10 py-4 border-2 border-orange-500/50 text-orange-400 font-semibold rounded-full hover:bg-orange-500/10 transition duration-300">
+            <i class="fab fa-discord mr-2"></i>Join Discord
+          </button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gradient-to-b from-black/60 to-black/80 backdrop-blur-xl border-t border-orange-500/30 mt-auto">
+    <div class="max-w-7xl mx-auto px-6 py-12 footer-content">
+      <!-- Main Footer Content -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 footer-grid">
+        
+        <!-- Brand Section -->
+        <div class="md:col-span-1">
+          <h4 class="text-2xl font-bold text-orange-400 mb-4 space-grotesk">
+            <i class=""></i>Mr. Speedy Development
+          </h4>
+          <p class="text-gray-300 text-sm leading-relaxed mb-4">
+            Creating the future of Roblox gaming with innovative experiences and premium quality games.
+          </p>
+          <div class="flex space-x-3">
+            <a href="https://www.roblox.com/groups/" target="_blank" class="w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center hover:bg-orange-500/40 transition duration-300">
+              <i class="fab fa-roblox text-orange-400 text-sm"></i>
+            </a>
+            <a href="https://discord.com/" target="_blank" class="w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center hover:bg-orange-500/40 transition duration-300">
+              <i class="fab fa-discord text-orange-400 text-sm"></i>
+            </a>
+            <a href="mailto:contact@mrspeedy.dev" class="w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center hover:bg-orange-500/40 transition duration-300">
+              <i class="fas fa-envelope text-orange-400 text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Games Section -->
+        <div class="md:col-span-1">
+          <h5 class="text-lg font-semibold text-white mb-4 space-grotesk">
+            <i class="fas fa-gamepad mr-2"></i>Our Games
+          </h5>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Speed Tycoon</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Speed Wars</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Obby Challenge</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Coming Soon</a></li>
+          </ul>
+        </div>
+
+        <!-- Support Section -->
+        <div class="md:col-span-1">
+          <h5 class="text-lg font-semibold text-white mb-4 space-grotesk">
+            <i class="fas fa-headset mr-2"></i>Support
+          </h5>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Help Center</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Report Bug</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Safety</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Community Section -->
+        <div class="md:col-span-1">
+          <h5 class="text-lg font-semibold text-white mb-4 space-grotesk">
+            <i class="fas fa-users mr-2"></i>Community
+          </h5>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Discord Server</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Roblox Group</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>News</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Events</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="pt-8 border-t border-orange-500/20">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            &copy; 2024 Mr. Speedy Development. All rights reserved.
+          </p>
+          <div class="flex space-x-6 text-sm">
+            <a href="#" class="text-gray-400 hover:text-orange-400 transition duration-300">Privacy Policy</a>
+            <a href="#" class="text-gray-400 hover:text-orange-400 transition duration-300">Terms of Service</a>
+            <a href="#" class="text-gray-400 hover:text-orange-400 transition duration-300">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile Menu Functions
+    function openMobileMenu() {
+      document.getElementById('mobileMenu').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      document.getElementById('mobileMenu').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerOffset = 100;
+          const elementPosition = target.offsetTop;
+          const offsetPosition = elementPosition - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Stats counter animation
+    function animateStats() {
+      const stats = document.querySelectorAll('.stat-number');
+      stats.forEach(stat => {
+        const finalValue = stat.textContent;
+        const numValue = parseInt(finalValue.replace(/[^0-9]/g, ''));
+        const suffix = finalValue.replace(/[0-9]/g, '');
+        
+        if (numValue && numValue > 0) {
+          let currentValue = 0;
+          const increment = numValue / 50;
+          const timer = setInterval(() => {
+            currentValue += increment;
+            if (currentValue >= numValue) {
+              currentValue = numValue;
+              clearInterval(timer);
+            }
+            stat.textContent = Math.floor(currentValue) + suffix;
+          }, 40);
+        }
+      });
+    }
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('text-reveal');
+          
+          // Animate stats when stats section comes into view
+          if (entry.target.id === 'stats') {
+            animateStats();
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe sections for animations
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+
+      // Add stagger animation to game cards
+      const gameCards = document.querySelectorAll('.game-card');
+      gameCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+      });
+    });
+
+    // Header scroll effect
+    let lastScrollY = window.scrollY;
+    const header = document.querySelector('header');
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
+      
+      lastScrollY = currentScrollY;
+    });
+
+    // Add parallax effect to hero section
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('#home');
+      if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
+
+    // Add click ripple effect to buttons
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+  </script>
+
+  <!-- Ripple Effect CSS -->
+  <style>
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(0);
+      animation: rippleEffect 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes rippleEffect {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+  </style>
+
+</body>
+</html>

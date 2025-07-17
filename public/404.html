@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 - Page Not Found | Mr. Speedy Development</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --primary-orange: #ff6b00;
+      --secondary-orange: #ff8533;
+      --accent-yellow: #ffc107;
+      --dark-bg: #0a0a0a;
+      --card-bg: rgba(20, 20, 20, 0.8);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #0f0f0f, #2a2a2a);
+      overflow-x: hidden;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .space-grotesk {
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.4;
+    }
+
+    .error-number {
+      font-size: 10rem;
+      font-weight: 900;
+      background: linear-gradient(45deg, var(--primary-orange), var(--accent-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      text-shadow: 0 0 50px rgba(255, 107, 0, 0.5);
+    }
+
+    .glitch-text {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-orange);
+    }
+
+    .rocket-icon {
+      font-size: 4rem;
+      color: var(--primary-orange);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-orange), var(--accent-yellow));
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255, 107, 0, 0.4);
+    }
+
+    .hover-glow {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .hover-glow:hover {
+      background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(255, 193, 7, 0.1));
+      color: var(--primary-orange);
+      box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .game-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 107, 0, 0.2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(255, 107, 0, 0.3);
+      border-color: var(--primary-orange);
+    }
+
+    @media (max-width: 768px) {
+      .error-number {
+        font-size: 6rem;
+      }
+      
+      .glitch-text {
+        font-size: 1.5rem;
+      }
+      
+      .rocket-icon {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+<body class="text-white min-h-screen flex flex-col">
+
+  <!-- HEADER -->
+  <header class="w-full fixed top-0 z-50 flex justify-center px-4 py-4">
+    <div class="w-full max-w-7xl bg-black/60 backdrop-blur-lg border border-orange-500/30 rounded-2xl shadow-2xl flex items-center justify-between px-8 py-5">
+      <a href="/" class="text-3xl font-bold text-orange-400 tracking-wide space-grotesk hover:text-orange-300 transition duration-300">
+        <i class="fas fa-rocket mr-2"></i>Mr. Speedy Development
+      </a>
+      <nav class="hidden md:flex space-x-2">
+        <a href="/" class="text-sm font-medium text-gray-100 px-6 py-3 rounded-full hover-glow"><i class="fas fa-home mr-2"></i>Home</a>
+        <a href="/#about" class="text-sm font-medium text-gray-100 px-6 py-3 rounded-full hover-glow"><i class="fas fa-info-circle mr-2"></i>About</a>
+        <a href="/#games" class="text-sm font-medium text-gray-100 px-6 py-3 rounded-full hover-glow"><i class="fas fa-gamepad mr-2"></i>Games</a>
+        <a href="/#stats" class="text-sm font-medium text-gray-100 px-6 py-3 rounded-full hover-glow"><i class="fas fa-chart-bar mr-2"></i>Stats</a>
+      </nav>
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-orange-400 text-2xl"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- MAIN 404 CONTENT -->
+  <main class="flex-grow flex items-center justify-center text-center px-6 pt-32 pb-20">
+    <div class="max-w-4xl">
+
+      <!-- 404 Number -->
+      <div class="error-number space-grotesk mb-8">404</div>
+
+      <!-- Error Message -->
+      <div class="glitch-text space-grotesk mb-6">OOPS! PAGE NOT FOUND</div>
+
+      <!-- Description -->
+      <div class="mb-8">
+        <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+         Well, it seems we can't find that page!
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mb-8">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="/">
+            <button class="btn-primary px-8 py-4 text-white font-semibold rounded-full shadow-lg transition duration-300">
+              <i class="fas fa-home mr-2"></i>Back to Home
+            </button>
+          </a>
+        </div>
+      </div>
+
+      
+
+    </div>
+  </main>
+
+<!-- FOOTER -->
+  <footer class="bg-gradient-to-b from-black/60 to-black/80 backdrop-blur-xl border-t border-orange-500/30 mt-auto">
+    <div class="max-w-7xl mx-auto px-6 py-12 footer-content">
+      <!-- Main Footer Content -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 footer-grid">
+        
+        <!-- Brand Section -->
+        <div class="md:col-span-1">
+          <h4 class="text-2xl font-bold text-orange-400 mb-4 space-grotesk">
+            <i class=""></i>Mr. Speedy Development
+          </h4>
+          <p class="text-gray-300 text-sm leading-relaxed mb-4">
+            Creating the future of Roblox gaming with innovative experiences and premium quality games.
+          </p>
+          <div class="flex space-x-3">
+            <a href="https://www.roblox.com/groups/" target="_blank" class="w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center hover:bg-orange-500/40 transition duration-300">
+              <i class="fab fa-roblox text-orange-400 text-sm"></i>
+            </a>
+            <a href="https://discord.com/" target="_blank" class="w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center hover:bg-orange-500/40 transition duration-300">
+              <i class="fab fa-discord text-orange-400 text-sm"></i>
+            </a>
+            <a href="mailto:contact@mrspeedy.dev" class="w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center hover:bg-orange-500/40 transition duration-300">
+              <i class="fas fa-envelope text-orange-400 text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Games Section -->
+        <div class="md:col-span-1">
+          <h5 class="text-lg font-semibold text-white mb-4 space-grotesk">
+            <i class="fas fa-gamepad mr-2"></i>Our Games
+          </h5>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Speed Tycoon</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Speed Wars</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Obby Challenge</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Coming Soon</a></li>
+          </ul>
+        </div>
+
+        <!-- Support Section -->
+        <div class="md:col-span-1">
+          <h5 class="text-lg font-semibold text-white mb-4 space-grotesk">
+            <i class="fas fa-headset mr-2"></i>Support
+          </h5>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Help Center</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Report Bug</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Safety</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Community Section -->
+        <div class="md:col-span-1">
+          <h5 class="text-lg font-semibold text-white mb-4 space-grotesk">
+            <i class="fas fa-users mr-2"></i>Community
+          </h5>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Discord Server</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Roblox Group</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>News</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-orange-400 transition duration-300 text-sm"><i class=""></i>Events</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="pt-8 border-t border-orange-500/20">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            &copy; 2024 Mr. Speedy Development. All rights reserved.
+          </p>
+          <div class="flex space-x-6 text-sm">
+            <a href="#" class="text-gray-400 hover:text-orange-400 transition duration-300">Privacy Policy</a>
+            <a href="#" class="text-gray-400 hover:text-orange-400 transition duration-300">Terms of Service</a>
+            <a href="#" class="text-gray-400 hover:text-orange-400 transition duration-300">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Update current time
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString();
+      document.getElementById('currentTime').textContent = timeString;
+    }
+    
+    // Update time immediately and then every second
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'h' || e.key === 'H') {
+        window.location.href = '/';
+      }
+      if (e.key === 'g' || e.key === 'G') {
+        window.location.href = '/#games';
+      }
+    });
+  </script>
+
+</body>
+</html>
